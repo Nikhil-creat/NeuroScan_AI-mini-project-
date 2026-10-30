@@ -36,7 +36,6 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
       - run: npm install --no-audit --no-fund
       # No VITE_API_URL => the Console shows a static sample (Pages cannot run the backend).
       # To point at a hosted API, add a repo variable API_URL and uncomment the env line.
