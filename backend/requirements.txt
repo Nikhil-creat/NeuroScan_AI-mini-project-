@@ -1,0 +1,13 @@
+fastapi>=0.115,<1
+uvicorn[standard]>=0.32,<1
+python-multipart>=0.0.12
+pydantic>=2.9,<3
+PyJWT>=2.9,<3
+pypdf>=5.0,<6
+# --- inference (heavy; needed only when real weights are used) ---
+numpy>=1.26
+Pillow>=10.4
+torch>=2.4
+torchvision>=0.19
+# --- dev ---
+pytest>=8

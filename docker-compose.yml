@@ -1,0 +1,38 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /var/cache/nginx
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    # No `ports:` on purpose: the API is reachable only through nginx (/api/), never from the host network.
+    env_file:
+      - path: ./backend/.env
+        required: false
+    environment:
+      DATA_DIR: /srv/data
+      WEIGHTS_PATH: /srv/models/neuroscan_resnet18.pt
+      CORS_ORIGINS: http://localhost:8080
+    volumes:
+      - api-data:/srv/data
+      - ./backend/models:/srv/models:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped
+
+volumes:
+  api-data: {}

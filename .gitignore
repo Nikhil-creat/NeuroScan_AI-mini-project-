@@ -1,0 +1,8 @@
+node_modules
+dist
+.env
+*.log
+__pycache__/
+.pytest_cache/
+backend/data/
+backend/models/*.pt
