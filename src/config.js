@@ -1,7 +1,3 @@
-git add -A && git commit -m "Update details" && git push
-
-
-x
 import metricsJson from './metrics.json'
 
 // ONE place to edit your details. Everything on the site reads from here.
