@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { Award, Briefcase, Sparkles, BadgeCheck, ExternalLink } from 'lucide-react'
+import { Award, Briefcase, Sparkles, BadgeCheck, ExternalLink, Building2, FolderGit2 } from 'lucide-react'
 import { CREDENTIALS as C } from '../config.js'
-import { CERTS, CERT_CATEGORIES, TIMELINE } from '../credentials.js'
+import { CERTS, CERT_CATEGORIES, TIMELINE, PROJECTS } from '../credentials.js'
 import { useCountUp } from '../lib/hooks.js'
 import { Section, GlassPanel, Reveal, Tag } from './ui.jsx'
 
@@ -34,13 +34,21 @@ export default function Credentials() {
       title="The engineer behind the build"
       intro="Hands-on learning beyond the classroom, from cloud security to data and AI, now applied in a single end-to-end project."
     >
-      <div className="grid gap-5 md:grid-cols-3">
+      <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <Reveal>
           <Counter value={num(C.certificates)} suffix={plus(C.certificates)} icon={Award} label="certificates earned across cloud, data, AI and software" />
         </Reveal>
         <Reveal>
           <Counter value={num(C.internships)} suffix={plus(C.internships)} icon={Briefcase} label="internships and industry micro-internships" />
         </Reveal>
+        <Reveal>
+          <Counter value={new Set(C.issuers).size} suffix="" icon={Building2} label="issuers and programmes, from NSDC to Forage" />
+        </Reveal>
+        <Reveal>
+          <Counter value={PROJECTS.length} suffix="" icon={FolderGit2} label="portfolio projects across AI, security and data" />
+        </Reveal>
+      </div>
+      <div className="mt-5 grid gap-5 lg:grid-cols-[1fr_1.4fr]">
         <Reveal>
           <GlassPanel className="h-full">
             <Sparkles className="h-6 w-6 text-mint" strokeWidth={1.75} />
@@ -56,6 +64,25 @@ export default function Credentials() {
                 </li>
               ))}
             </ol>
+          </GlassPanel>
+        </Reveal>
+        <Reveal>
+          <GlassPanel className="h-full">
+            <h3 className="font-inter text-sm font-semibold uppercase tracking-wide">Project work</h3>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {PROJECTS.map((p) => (
+                <li key={p.name} className="rounded-xl border border-white/10 p-3.5 transition-colors hover:border-mint/40">
+                  <p className="font-mono text-[10px] uppercase tracking-wider text-mint">{p.tag}</p>
+                  <p className="mt-1 font-inter text-[14px] font-semibold">
+                    {p.link ? <a href={p.link} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-mint">{p.name}<ExternalLink className="h-3 w-3" /></a> : p.name}
+                  </p>
+                  <p className="mt-1 text-[12px] leading-snug text-white/60">{p.note}</p>
+                  <div className="mt-2 flex flex-wrap gap-1.5">
+                    {p.stack.map((t) => <span key={t} className="rounded-full bg-white/[0.06] px-2 py-0.5 font-mono text-[10px] text-white/65">{t}</span>)}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </GlassPanel>
         </Reveal>
       </div>

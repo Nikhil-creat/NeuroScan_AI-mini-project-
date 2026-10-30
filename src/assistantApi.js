@@ -85,6 +85,10 @@ export async function ask(message, history) {
     if (SITE.assistantUrl) return await viaProxy(text, hist)
     const key = byok.get()
     if (key) return await viaOwnKey(text, hist, key)
-  } catch { /* fall through to offline */ }
+  } catch (e) {
+    const o = offlineAnswer(text)
+    const why = /groq 401|groq 403/.test(String(e.message)) ? 'your Groq key was rejected' : 'the AI service is unreachable'
+    return { ...o, answer: `(${why}, answering from built-in project notes)\n\n${o.answer.replace(/^\(Offline[^)]*\)\s*/, '')}`, provider: 'offline' }
+  }
   return offlineAnswer(text)
 }

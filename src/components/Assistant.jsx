@@ -48,13 +48,13 @@ export default function Assistant() {
         onClick={() => setOpen((o) => !o)}
         aria-label={open ? 'Close assistant' : 'Open AI assistant'}
         aria-expanded={open}
-        className="fixed bottom-5 right-5 z-[55] flex h-14 w-14 items-center justify-center rounded-full bg-mint text-ink shadow-[0_0_30px_rgba(94,210,156,0.45)] transition-transform hover:scale-105"
+        className="fixed bottom-5 right-5 z-[56] flex h-14 w-14 items-center justify-center rounded-full bg-mint text-ink shadow-[0_0_30px_rgba(94,210,156,0.45)] transition-transform hover:scale-105"
       >
         {open ? <X className="h-6 w-6" /> : <Bot className="h-6 w-6" />}
       </button>
 
       {open && (
-        <div role="dialog" aria-label="NeuroScan AI assistant" className="liquid-glass fixed bottom-24 right-3 z-[55] flex h-[min(560px,75vh)] w-[min(380px,calc(100vw-1.5rem))] flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink/90 backdrop-blur-xl">
+        <div role="dialog" aria-label="NeuroScan AI assistant" className="fixed inset-x-3 bottom-24 z-[55] flex h-[min(560px,calc(100dvh-8rem))] flex-col overflow-hidden rounded-2xl border border-white/15 bg-[#0b100f]/95 shadow-2xl backdrop-blur-xl sm:inset-x-auto sm:right-5 sm:w-[380px]">
           <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
             <div>
               <p className="font-inter text-[13px] font-bold">NeuroScan Assistant</p>

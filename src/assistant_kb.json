@@ -4,8 +4,8 @@
   "text": "NeuroScan AI is a B.Tech CSE 3rd-year mini project at Vaagdevi College of Engineering, Warangal, guided by Dr. P. Shailaja. Full title: An Explainable Deep Learning and RAG-Based Clinical Decision Support System for Multi-Class Brain MRI Diagnosis. It classifies brain MRI slices into Alzheimer's Disease, Brain Tumor and Normal Anatomy, shows a Grad-CAM heat map, retrieves cited guideline passages, and sends every case to a human clinician. It is a research prototype, not a medical device, and not for clinical use."
  },
  {
-  "title": "Author",
-  "text": "The project is built by Nikhil Chary Sriramoju, final-year B.Tech CSE student. Skills: Python, pandas, SQL, Power BI, Django, React, deep learning, RAG, Docker. GitHub: github.com/Nikhil-creat. Contact via the Contact section of the site."
+  "title": "Author, Builder, Developer",
+  "text": "Who built this / name of the builder: Nikhil Chary Sriramoju, final-year B.Tech CSE student at Vaagdevi College of Engineering, Warangal (guide Dr. P. Shailaja). Skills: Python, pandas, SQL, Power BI, Django, React, deep learning, RAG, Docker. GitHub: github.com/Nikhil-creat. Contact via the Contact section of the site."
  },
  {
   "title": "CNN",

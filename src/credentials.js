@@ -22,3 +22,14 @@ export const TIMELINE = [
   { when: 'Aug–Sep 2026', what: 'Machine Learning Engineer intern', where: 'Yuva Intern (NSDC)' },
   { when: '2025–2026', what: 'NeuroScan AI mini project', where: 'Vaagdevi College of Engineering' },
 ]
+
+// Other project work shown under Credentials. EDIT: keep only what you can demo, add repo links when public.
+// `link` empty => no link is shown.
+export const PROJECTS = [
+  { name: 'NeuroScan AI', tag: 'This project', note: 'Explainable brain-MRI decision support: CNN, Grad-CAM, RAG, guard-railed agents.', stack: ['PyTorch', 'FastAPI', 'React', 'Docker'], link: 'https://github.com/Nikhil-creat/NeuroScan_AI-mini-project-' },
+  { name: 'AgentShield-X', tag: 'AI security', note: 'Zero-trust governance engine for AI agents: guardrails, sandbox, Merkle audit ledger.', stack: ['Python', 'Security'], link: '' },
+  { name: 'TrustGuard AI', tag: 'ML + MLOps', note: 'KYC document verification, fraud detection and risk-case prioritisation in one platform.', stack: ['ML', 'MLOps'], link: '' },
+  { name: 'Omni-Cloud Sentinel', tag: 'Multi-agent', note: 'Cloud-ops agents for FinOps, DevSecOps and incident response.', stack: ['Agents', 'DevSecOps'], link: '' },
+  { name: 'ChurnScope', tag: 'Data science', note: 'End-to-end customer churn prediction with a scikit-learn pipeline.', stack: ['scikit-learn', 'Pandas'], link: '' },
+  { name: 'PDF RAG Chatbot', tag: 'RAG', note: 'Upload PDFs and chat with them: embeddings, retrieval, prompt design.', stack: ['RAG', 'LLM'], link: '' },
+]
