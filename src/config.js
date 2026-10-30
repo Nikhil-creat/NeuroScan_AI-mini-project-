@@ -30,6 +30,12 @@ export const SITE = {
   apiEnabled: (import.meta.env.VITE_API_URL || '') !== '',
   apiUrl: (import.meta.env.VITE_API_URL || '') === 'same-origin' ? '' : (import.meta.env.VITE_API_URL || '').replace(/\/$/, ''),
 
+  // Assistant endpoint: VITE_ASSISTANT_URL (e.g. a Cloudflare Worker) or the FastAPI backend's /api/assistant.
+  // Empty => the chat runs offline from built-in project notes (or with the visitor's own Groq key).
+  assistantUrl:
+    (import.meta.env.VITE_ASSISTANT_URL || '').trim() ||
+    ((import.meta.env.VITE_API_URL || '') !== '' ? ((import.meta.env.VITE_API_URL === 'same-origin' ? '' : import.meta.env.VITE_API_URL.replace(/\/$/, '')) + '/api/assistant') : ''),
+
   // Real results only: `python -m ml.evaluate --out ../src/metrics.json` overwrites src/metrics.json.
   // While that file contains `null`, the Evaluation section shows "pending" instead of numbers.
   metrics: metricsJson,

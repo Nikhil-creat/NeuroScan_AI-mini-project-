@@ -20,6 +20,7 @@ import Contact from './components/Contact.jsx'
 import Brain3D from './components/Brain3D.jsx'
 import Reports from './components/Reports.jsx'
 import ScrollProgress from './components/ScrollProgress.jsx'
+import Assistant from './components/Assistant.jsx'
 import Footer from './components/Footer.jsx'
 
 export default function App() {
@@ -48,6 +49,7 @@ export default function App() {
       <Faq />
       <Contact />
       <Footer />
+      <Assistant />
     </main>
   )
 }

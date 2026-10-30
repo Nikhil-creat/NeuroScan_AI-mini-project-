@@ -1,0 +1,54 @@
+[
+ {
+  "title": "Overview",
+  "text": "NeuroScan AI is a B.Tech CSE 3rd-year mini project at Vaagdevi College of Engineering, Warangal, guided by Dr. P. Shailaja. Full title: An Explainable Deep Learning and RAG-Based Clinical Decision Support System for Multi-Class Brain MRI Diagnosis. It classifies brain MRI slices into Alzheimer's Disease, Brain Tumor and Normal Anatomy, shows a Grad-CAM heat map, retrieves cited guideline passages, and sends every case to a human clinician. It is a research prototype, not a medical device, and not for clinical use."
+ },
+ {
+  "title": "Author",
+  "text": "The project is built by Nikhil Chary Sriramoju, final-year B.Tech CSE student. Skills: Python, pandas, SQL, Power BI, Django, React, deep learning, RAG, Docker. GitHub: github.com/Nikhil-creat. Contact via the Contact section of the site."
+ },
+ {
+  "title": "CNN",
+  "text": "The classifier is a ResNet-18 convolutional network with transfer learning, class-weighted cross-entropy loss and temperature scaling for calibrated confidence. Classes in order: Alzheimer's Disease, Brain Tumor, Normal Anatomy. Metrics (accuracy, per-class precision/recall, confusion matrix, ECE) are produced by backend/ml/evaluate.py into src/metrics.json. Until the model is trained the Evaluation section says pending; no accuracy number is claimed."
+ },
+ {
+  "title": "Grad-CAM",
+  "text": "Grad-CAM uses gradients flowing into the last convolutional block to produce a heat map showing which image regions influenced the prediction. It is not causal proof. Confident predictions with diffuse heat maps are flagged for priority human review."
+ },
+ {
+  "title": "RAG",
+  "text": "Retrieval-Augmented Generation here uses BM25 lexical retrieval over ingested PDF or text guidelines (pypdf for extraction). Reports are extractive: each evidence line is a retrieved passage with a citation. If nothing relevant is found the system says none found instead of inventing an answer. Retrieved text is sanitised so instruction-like sentences are dropped. Embedding-based retrieval is future work."
+ },
+ {
+  "title": "Agentic AI",
+  "text": "An orchestrator runs specialised agents (triage, imaging, evidence, report). Each agent has a tool allow-list and none has a release tool. The orchestrator always returns released false; only a clinician review can release a case. Every step is written to a hash-chained audit log."
+ },
+ {
+  "title": "Security",
+  "text": "PBKDF2 password hashing, HS256 JWT, role-based access control (patient, clinician, admin), rate limiting, magic-byte upload checks (PNG/JPEG, 8 MB), prompt-injection and PII guardrails, append-only hash-chained audit log verifiable at /api/audit/verify, security headers and CSP, Docker non-root with cap_drop ALL and read-only filesystem. API keys for the assistant live only on the server."
+ },
+ {
+  "title": "Docker",
+  "text": "Multi-stage Dockerfile builds the React site and serves it with non-root nginx-unprivileged on port 8080, proxying /api to the FastAPI service. docker-compose.yml runs web and api, no published API port, cap_drop ALL, read_only. Run with: docker compose up --build. The Docker stack has been written but not yet run on a Docker host."
+ },
+ {
+  "title": "Deployment",
+  "text": "The static site is deployed to GitHub Pages by a GitHub Actions workflow (backend tests, then build, then deploy). Pages cannot run the Python backend, so the Console shows a labelled sample unless a hosted API is configured with the VITE_API_URL build variable. Termux deploy: bash termux-deploy.sh pushes from a phone."
+ },
+ {
+  "title": "Limitations",
+  "text": "Small public datasets, 2D slices only, three classes, Grad-CAM is not causal, the out-of-distribution gate is a heuristic, BM25 is lexical, SQLite and in-memory rate limits suit one worker, no clinical validation, no independent security audit, model weights not yet trained, DEMO_MODE outputs are simulated and flagged."
+ },
+ {
+  "title": "Credentials",
+  "text": "The builder has 100+ certificates and 5+ internships or micro-internships (Skill India/NASSCOM, IBM SkillsBuild, UiPath, Reliance Foundation, Forage job simulations from Deloitte, TATA, BCG Platinion, Skyscanner, AIG, British Airways) and is currently a Machine Learning Engineer intern with Yuva Intern (NSDC). A Verified badge appears only where a public verification link exists."
+ },
+ {
+  "title": "Roadmap",
+  "text": "v1 and v2 done. v3 next: train and publish real metrics, embedding retrieval, hosted API. v4 later: 3D volumes (DICOM/NIfTI), more classes, external validation, Postgres and Redis, SSO."
+ },
+ {
+  "title": "Assistant",
+  "text": "This assistant answers questions about the project using Groq (primary) and Google Gemini (fallback) through a server-side proxy so API keys never reach the browser. It refuses to give medical diagnosis or treatment advice, treats user text as data, and falls back to answering from the built-in project notes if no provider is reachable."
+ }
+]

@@ -10,14 +10,14 @@ B.Tech CSE mini project · Vaagdevi College of Engineering · guide: Dr. P. Shai
 | Part | Status |
 |---|---|
 | `src/` React + Tailwind site (hero, project, pipeline, agents, RAG, live console, evaluation, credentials, security, FAQ, contact) | Built |
-| `backend/` FastAPI: JWT auth + RBAC, upload validation, CNN + Grad-CAM, agent orchestrator, BM25 RAG, hash-chained audit log | Built; core logic unit-tested (27 tests) |
+| `backend/` FastAPI: JWT auth + RBAC, upload validation, CNN + Grad-CAM, agent orchestrator, BM25 RAG, hash-chained audit log | Built; core logic unit-tested (34 tests) |
 | Trained model weights | **You must train them** (see DEPLOY.md) |
 | Docker (`Dockerfile`, `backend/Dockerfile`, `docker-compose.yml`) | Written, not yet run on a Docker host |
 | GitHub Pages workflow | Written (`.github/workflows/pages.yml`) |
 
 Also included: 3D explainability view, animated pipeline, credentials wall (`src/credentials.js`), reports section (`src/reports.js`, `public/docs/`, `VIVA.md`), `backend/ml/` (training with class weighting + temperature scaling, held-out evaluation that writes `src/metrics.json`), a model card, architecture diagram, skills-to-code matrix, `termux-deploy.sh` (phone deploy), `SECURITY.md`, `LICENSE` (MIT).
 
-Guides: **TERMUX.md** (deploy from your phone), **DEPLOY.md** (GitHub Pages walkthrough, hosted backend, training).
+Guides: **AI_ASSISTANT.md** (free Groq + Gemini chatbot, keys kept server-side), **TERMUX.md** (deploy from your phone), **DEPLOY.md** (GitHub Pages walkthrough, hosted backend, training).
 
 ## Train and publish real metrics
 

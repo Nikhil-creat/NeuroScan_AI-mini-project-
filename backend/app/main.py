@@ -16,6 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, Field
 
+from . import assistant as assistant_mod
 from . import guardrails, security
 from .agents import CLASSES, Orchestrator
 from .audit import AuditLog
@@ -35,6 +36,8 @@ predictor = Predictor(
     demo_mode=os.environ.get("DEMO_MODE", "0") == "1",
 )
 orchestrator = Orchestrator(kb, audit)
+assistant_kb = assistant_mod.load_kb()
+assistant_limiter = security.RateLimiter(12, 60)
 login_limiter = security.RateLimiter(10, 60)
 upload_limiter = security.RateLimiter(20, 60)
 
@@ -94,6 +97,16 @@ class NewUser(Credentials):
     role: str = "clinician"
 
 
+class ChatTurn(BaseModel):
+    role: str = Field(pattern="^(user|assistant)$")
+    content: str = Field(max_length=1000)
+
+
+class AssistantRequest(BaseModel):
+    message: str = Field(min_length=1, max_length=1000)
+    history: list[ChatTurn] = Field(default_factory=list, max_length=12)
+
+
 class Review(BaseModel):
     verdict: str = Field(pattern="^(confirm|override|reject)$")
     final_label: str | None = None
@@ -131,6 +144,15 @@ def _get_case_or_404(case_id: str, user: dict):
 @app.get("/api/health")
 def health():
     return {"status": "ok", "model_mode": predictor.mode, "model_error": predictor.error, "classes": CLASSES}
+
+
+@app.post("/api/assistant")
+def ask_assistant(body: AssistantRequest, request: Request):
+    """Public project assistant. Rate limited per client; keys stay on the server."""
+    ip = request.client.host if request.client else "unknown"
+    if not assistant_limiter.allow(ip):
+        raise HTTPException(429, "Too many questions, wait a minute")
+    return assistant_mod.answer(body.message, [t.model_dump() for t in body.history], assistant_kb)
 
 
 @app.post("/api/auth/register", status_code=201)

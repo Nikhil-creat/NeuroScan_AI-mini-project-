@@ -40,8 +40,10 @@ jobs:
       # No VITE_API_URL => the Console shows a static sample (Pages cannot run the backend).
       # To point at a hosted API, add a repo variable API_URL and uncomment the env line.
       - run: npm run build
-        # env:
-        #   VITE_API_URL: ${{ vars.API_URL }}
+        env:
+          # Optional repo variable ASSISTANT_URL = your Cloudflare Worker URL (see AI_ASSISTANT.md). Empty = offline chat.
+          VITE_ASSISTANT_URL: ${{ vars.ASSISTANT_URL }}
+        # VITE_API_URL: ${{ vars.API_URL }}   (add under env: to connect the full backend)
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
