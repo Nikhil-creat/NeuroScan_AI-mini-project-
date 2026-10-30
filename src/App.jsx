@@ -17,16 +17,21 @@ import Limits from './components/Limits.jsx'
 import Roadmap from './components/Roadmap.jsx'
 import Faq from './components/Faq.jsx'
 import Contact from './components/Contact.jsx'
+import Brain3D from './components/Brain3D.jsx'
+import Reports from './components/Reports.jsx'
+import ScrollProgress from './components/ScrollProgress.jsx'
 import Footer from './components/Footer.jsx'
 
 export default function App() {
   return (
     <main className="bg-ink">
+      <ScrollProgress />
       <Header />
       <Hero />
       <Project />
       <Platform />
       <Architecture />
+      <Brain3D />
       <Agents />
       <Rag />
       <Console />
@@ -34,6 +39,7 @@ export default function App() {
       <ModelCard />
       <Credentials />
       <Skills />
+      <Reports />
       <TechStack />
       <Security />
       <Deploy />

@@ -4,6 +4,7 @@ import { Menu, X, Brain, ArrowRight } from 'lucide-react'
 export const NAV = [
   { label: 'PROJECT', href: '#project' },
   { label: 'PLATFORM', href: '#platform' },
+  { label: 'VISUAL LAB', href: '#visual-lab' },
   { label: 'CONSOLE', href: '#console' },
   { label: 'CREDENTIALS', href: '#credentials' },
   { label: 'SECURITY', href: '#security' },

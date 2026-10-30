@@ -78,3 +78,10 @@ body {
     transition: none;
   }
 }
+
+/* marquee + motion helpers */
+@keyframes marquee { from { transform: translateX(0) } to { transform: translateX(-50%) } }
+.marquee-track { animation: marquee 40s linear infinite }
+.marquee-mask { -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent) }
+.marquee-mask:hover .marquee-track { animation-play-state: paused }
+@media (prefers-reduced-motion: reduce) { .marquee-track { animation: none } }
